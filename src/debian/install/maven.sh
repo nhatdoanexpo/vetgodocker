@@ -11,3 +11,5 @@ mv apache-maven-${VER} /opt/maven
 
 export MAVEN_HOME=/opt/maven
 export PATH=\$PATH:\$MAVEN_HOME/bin
+
+source /etc/profile.d/maven.sh

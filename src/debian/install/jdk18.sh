@@ -10,3 +10,5 @@ mv jdk-18 /opt/
 # Set JDK environment variables
 export JAVA_HOME=/opt/jdk-18
 export PATH=$PATH:$JAVA_HOME/bin
+
+source /etc/profile.d/jdk18.sh

@@ -11,4 +11,4 @@ mv jdk-18 /opt/
 export JAVA_HOME=/opt/jdk-18
 export PATH=$PATH:$JAVA_HOME/bin
 
-source /etc/profile.d/jdk18.sh
+java -version

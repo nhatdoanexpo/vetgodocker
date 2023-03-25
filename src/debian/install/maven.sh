@@ -10,6 +10,6 @@ tar xvf apache-maven-${VER}-bin.tar.gz
 mv apache-maven-${VER} /opt/maven
 
 export MAVEN_HOME=/opt/maven
-export PATH=\$PATH:\$MAVEN_HOME/bin
+export PATH=$PATH:$MAVEN_HOME/bin
 
-source /etc/profile.d/maven.sh
+mvn --version

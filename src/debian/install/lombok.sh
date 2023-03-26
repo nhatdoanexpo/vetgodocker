@@ -24,5 +24,5 @@ then
 fi
 
 # Install Lombok
-java -jar $LOMBOK_JAR install
+java -jar $LOMBOK_JAR install auto
 

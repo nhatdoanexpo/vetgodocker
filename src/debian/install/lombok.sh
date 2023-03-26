@@ -9,9 +9,6 @@ mv lombok.jar /usr/local/lib/lombok
 
 # Lombok installation script
 
-# Set the path to the Lombok jar file
-LOMBOK_JAR=/usr/local/lib/lombok/lombok.jar
-
 # Check if Java is installed
 if ! command -v java &> /dev/null
 then

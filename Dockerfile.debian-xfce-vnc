@@ -66,6 +66,8 @@ RUN $INST_SCRIPTS/maven.sh
 ### Install eclipse
 RUN $INST_SCRIPTS/eclipse.sh
 
+# Set the path to the Lombok jar file
+ENV LOMBOK_JAR=/usr/local/lib/lombok/lombok.jar
 ### Install lombok
 RUN $INST_SCRIPTS/lombok.sh
 

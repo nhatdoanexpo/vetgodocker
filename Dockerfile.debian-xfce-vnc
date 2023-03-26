@@ -63,6 +63,9 @@ ENV PATH=$PATH:$JAVA_HOME/bin
 RUN $INST_SCRIPTS/jdk18.sh
 RUN $INST_SCRIPTS/maven.sh
 
+### Install eclipse
+RUN $INST_SCRIPTS/eclipse.sh
+
 ### Install xfce UI
 RUN $INST_SCRIPTS/xfce_ui.sh
 ADD ./src/common/xfce/ $HOME/

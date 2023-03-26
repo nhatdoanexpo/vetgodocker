@@ -54,6 +54,11 @@ RUN $INST_SCRIPTS/chrome.sh
 ### Install Anydesk
 RUN $INST_SCRIPTS/anydesk.sh
 
+ENV MAVEN_HOME=/opt/maven
+ENV PATH=$PATH:$MAVEN_HOME/bin
+ENV JAVA_HOME=/opt/jdk-18
+ENV PATH=$PATH:$JAVA_HOME/bin
+
 ### Install jdk18+maven
 RUN $INST_SCRIPTS/jdk18.sh
 RUN $INST_SCRIPTS/maven.sh

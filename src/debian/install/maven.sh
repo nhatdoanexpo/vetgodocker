@@ -8,8 +8,3 @@ export VER="3.8.6"
 wget https://archive.apache.org/dist/maven/maven-3/${VER}/binaries/apache-maven-${VER}-bin.tar.gz
 tar xvf apache-maven-${VER}-bin.tar.gz
 mv apache-maven-${VER} /opt/maven
-
-export MAVEN_HOME=/opt/maven
-export PATH=$PATH:$MAVEN_HOME/bin
-
-mvn --version

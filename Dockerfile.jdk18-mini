@@ -37,8 +37,8 @@ ADD ./src/common/install/ $INST_SCRIPTS/
 ADD ./src/debian/install/ $INST_SCRIPTS/
 
 ### Install some common tools
-RUN $INST_SCRIPTS/tools.sh
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+RUN $INST_SCRIPTS/tools.sh
 
 ### Install custom fonts
 RUN $INST_SCRIPTS/install_custom_fonts.sh
@@ -47,29 +47,13 @@ RUN $INST_SCRIPTS/install_custom_fonts.sh
 RUN $INST_SCRIPTS/tigervnc.sh
 RUN $INST_SCRIPTS/no_vnc.sh
 
-### Install firefox and chrome browser
-RUN $INST_SCRIPTS/firefox.sh
-RUN $INST_SCRIPTS/chrome.sh
-
-### Install Anydesk
-RUN $INST_SCRIPTS/anydesk.sh
-
-ENV MAVEN_HOME /opt/maven
-ENV PATH $PATH:$MAVEN_HOME/bin
+### Install jdk
 ENV JAVA_HOME /opt/jdk-18
 ENV PATH $PATH:$JAVA_HOME/bin
-
-### Install jdk18+maven
 RUN $INST_SCRIPTS/jdk18.sh
-RUN $INST_SCRIPTS/maven.sh
 
-### Install eclipse
-RUN $INST_SCRIPTS/eclipse.sh
-
-# Set the path to the Lombok jar file
-ENV LOMBOK_JAR=/usr/local/lib/lombok/lombok.jar
-### Install lombok
-RUN $INST_SCRIPTS/lombok.sh
+###  chrome browser
+RUN $INST_SCRIPTS/chrome.sh
 
 ### Install xfce UI
 RUN $INST_SCRIPTS/xfce_ui.sh

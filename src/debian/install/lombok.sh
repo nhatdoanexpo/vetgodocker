@@ -25,7 +25,7 @@ fi
 
 # Install Lombok
 java -jar $LOMBOK_JAR install auto
-java -jar lombok.jar install auto /opt/eclipse
+java -jar $LOMBOK_JAR install auto /opt/eclipse
 
 
 

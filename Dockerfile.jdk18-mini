@@ -66,5 +66,9 @@ RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 USER 1000
 
+COPY csvetgoapp/zalo-bot-1.0.0.jar .
+COPY csvetgoapp/browser-plugin browser-plugin
+
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
+CMD ["java", "-jar", "zalo-bot-1.0.0.jar"]
 CMD ["--wait"]

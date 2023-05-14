@@ -66,8 +66,5 @@ RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 USER 1000
 
-###  vetgo app
-RUN $INST_SCRIPTS/vetgoselenium.sh
-
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
 CMD ["--wait"]

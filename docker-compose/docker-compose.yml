@@ -1,0 +1,10 @@
+version: '3'
+services:
+  vetgodeploy:
+    image: nhatdoanexpo/vetgodeploy:v2.0
+    ports:
+      - "5901:5901"
+      - "6901:6901"
+    environment:
+      - LICENSE=zVmvIJlvZmtISK9i2fqxGw==
+    restart: always

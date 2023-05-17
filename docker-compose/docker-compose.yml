@@ -6,5 +6,5 @@ services:
       - "5901:5901"
       - "6901:6901"
     environment:
-      - LICENSE=zVmvIJlvZmtISK9i2fqxGw==
+      - LICENSE=YLFasEpjU1jO2rHj++2uixv+3LAprZlRTZJnYFUv3jEBSeOAbvq1qYNwIp168Y/MS44x9iNiXYfgVSaIxBXUZPfUByG+Bej91KAQG+b6Y7Y=
     restart: always

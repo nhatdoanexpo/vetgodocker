@@ -8,4 +8,5 @@ services:
     environment:
       - cTTV1bfUs5nijK+6Scw3GS+KwREEfZyJPlXuSAoNzSsq4byYYV/Odr5umoIFj/QP9LXKwHY25y50/RgA+DMF2Ja6CJ6Hygd/uqXz3a6BxW8=
       - TZ=Asia/Bangkok
+      - ENVIRONMENT=pro
     restart: always

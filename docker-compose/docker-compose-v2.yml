@@ -1,0 +1,16 @@
+version: '3'
+services:
+  vetgodeploy-severv2:
+    image: nhatdoanexpo/vetgodeploy:v3.0
+    ports:
+      - "5901:5901"
+      - "8306:6901"
+    environment:
+      - LICENSE=gndsOlX2HDS9oIZSzg0CM9DeF7xcQyxbItgb9aM83vsJ83egowTMdjq3y89Rfg6a5mth9mQObYJ/H67CMjW0TFgWWcWS6vezCo0yjFglm/c=
+      - TZ=Asia/Bangkok
+      - ENVIRONMENT=pro
+    volumes:
+      - ./\$SERVICE_NAME/zalo-bot-1.0.0.jar:/headless/zalo-bot-1.0.0.jar
+      - ./\$SERVICE_NAME/browser-plugin:/headless/browser-plugin
+      - ./\$SERVICE_NAME/browser-profile:/headless/browser-profile
+    restart: always

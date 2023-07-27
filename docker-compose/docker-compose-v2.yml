@@ -1,7 +1,7 @@
 version: '3'
 services:
   vetgodeploy-severv2:
-    image: nhatdoanexpo/vetgodeploy:v2.0
+    image: nhatdoanexpo/vetgodeploy:v3.0
     ports:
       - "5901:5901"
       - "8306:6901"

@@ -6,11 +6,11 @@ services:
       - "5901:5901"
       - "8306:6901"
     environment:
-      - LICENSE=gndsOlX2HDS9oIZSzg0CM9DeF7xcQyxbItgb9aM83vsJ83egowTMdjq3y89Rfg6a5mth9mQObYJ/H67CMjW0TFgWWcWS6vezCo0yjFglm/c=
+      - LICENSE=exBbUueSGIsMZeRUsxg/B0q/9Lao4J16WvwxlQi6ZpsxAU9n6RpNLG5SqjW0Qxi8p2ShYjsKRIxes117hfsy5AhOkWAH92S5q4sb3RA5PjA=exBbUueSGIsMZeRU>
       - TZ=Asia/Bangkok
       - ENVIRONMENT=pro
     volumes:
-      - ./\$SERVICE_NAME/zalo-bot-1.0.0.jar:/headless/zalo-bot-1.0.0.jar
-      - ./\$SERVICE_NAME/browser-plugin:/headless/browser-plugin
-      - ./\$SERVICE_NAME/browser-profile:/headless/browser-profile
+      - ../csvetgoapp/zalo-bot-1.0.0.jar:/headless/zalo-bot-1.0.0.jar
+      - ../csvetgoapp/browser-plugin:/headless/browser-plugin
+      - ../csvetgoapp/vetgodeploy-severv2/browser-profile:/headless/browser-profile
     restart: always

@@ -1,9 +1,18 @@
+# Stage 1: Build the application using Maven and OpenJDK 22
+FROM maven:3.8.6-openjdk-22 AS build
+WORKDIR /browser-task
+COPY pom.xml .
+RUN mvn dependency:go-offline
+COPY src/ /browser-task/src/
+RUN mvn clean package -Dmaven.test.skip
+
+
 # This Dockerfile is used to build an headles vnc image based on Debian
 
-FROM debian:11
+FROM debian:11 AS final
 
-MAINTAINER Sven Nierlein "sven@consol.de"
-ENV REFRESHED_AT 2023-01-27
+MAINTAINER "Nhat it"
+ENV REFRESHED_AT 2024-07-30
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firefox and chromium" \
  io.k8s.display-name="Headless VNC Container based on Debian" \
@@ -37,8 +46,8 @@ ADD ./src/common/install/ $INST_SCRIPTS/
 ADD ./src/debian/install/ $INST_SCRIPTS/
 
 ### Install some common tools
-RUN $INST_SCRIPTS/tools.sh
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+RUN $INST_SCRIPTS/tools.sh
 
 ### Install custom fonts
 RUN $INST_SCRIPTS/install_custom_fonts.sh
@@ -47,32 +56,13 @@ RUN $INST_SCRIPTS/install_custom_fonts.sh
 RUN $INST_SCRIPTS/tigervnc.sh
 RUN $INST_SCRIPTS/no_vnc.sh
 
-### Install firefox and chrome browser
-#RUN $INST_SCRIPTS/firefox.sh
-RUN $INST_SCRIPTS/chrome.sh
-
-### Install Anydesk
-#RUN $INST_SCRIPTS/anydesk.sh
-
-ENV MAVEN_HOME /opt/maven
-ENV PATH $PATH:$MAVEN_HOME/bin
-ENV JAVA_HOME /opt/jdk-18
+### Install jdk
+ENV JAVA_HOME /opt/jdk-22.0.1
 ENV PATH $PATH:$JAVA_HOME/bin
+RUN $INST_SCRIPTS/jdk22.0.1.sh
 
-### Install jdk18+maven
-RUN $INST_SCRIPTS/jdk18.sh
-RUN $INST_SCRIPTS/maven.sh
-
-### Install eclipse
-RUN $INST_SCRIPTS/eclipse.sh
-
-# Set the path to the Lombok jar file
-ENV LOMBOK_JAR=/usr/local/lib/lombok/lombok.jar
-### Install lombok
-RUN $INST_SCRIPTS/lombok.sh
-
-### Install inteliji
-RUN $INST_SCRIPTS/inteliji.sh
+###  chrome browser
+RUN $INST_SCRIPTS/chrome.sh
 
 ### Install xfce UI
 RUN $INST_SCRIPTS/xfce_ui.sh
@@ -84,6 +74,8 @@ ADD ./src/common/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 USER 1000
+COPY --from=build /browser-task/target/zalo-bot-1.0.0.jar .
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
+CMD ["java", "-jar", "browser-task-1.0.0.jar"]
 CMD ["--wait"]

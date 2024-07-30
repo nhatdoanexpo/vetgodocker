@@ -1,9 +1,12 @@
 # Stage 1: Build the application using Maven and OpenJDK 22
-FROM maven:3.9-sapmachine-22 AS build
-WORKDIR $HOME
-COPY browser-task/pom.xml .
+FROM maven:3.9-sapmachine-22 as MAVEN_TOOL_CHAIN_CACHE
+WORKDIR /build
+COPY ./browser-task/pom.xml .
 RUN mvn dependency:go-offline
-COPY browser-task/src/ /browser-task/src/
+
+COPY ./browser-task/pom.xml /tmp/
+COPY ./browser-task/src /tmp/src/
+WORKDIR /tmp/
 RUN mvn clean package -Dmaven.test.skip
 
 # This Dockerfile is used to build an headles vnc image based on Debian
@@ -73,7 +76,7 @@ ADD ./src/common/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 USER 1000
-COPY --from=build browser-task/target/browser-task-1.0.0.jar .
+COPY --from=MAVEN_TOOL_CHAIN_CACHE /tmp/target/browser-task-1.0.0.jar /browser-task-1.0.0.jar
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
 CMD ["java", "-jar", "browser-task-1.0.0.jar"]
 CMD ["--wait"]

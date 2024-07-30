@@ -5,7 +5,7 @@ COPY browser-task/pom.xml .
 RUN mvn dependency:go-offline
 COPY browser-task/src/ /browser-task/src/
 RUN mvn clean package -Dmaven.test.skip
-RUN ls -l $HOME/target  # Kiểm tra các tệp tin trong thư mục target
+RUN ls -l /browser-task/target
 
 
 # This Dockerfile is used to build an headles vnc image based on Debian
@@ -75,7 +75,7 @@ ADD ./src/common/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 USER 1000
-COPY --from=build $HOME/target/browser-task-1.0.0.jar .
+COPY --from=build browser-task/target/browser-task-1.0.0.jar .
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
 CMD ["java", "-jar", "browser-task-1.0.0.jar"]
 CMD ["--wait"]

@@ -1,9 +1,9 @@
 # Stage 1: Build the application using Maven and OpenJDK 22
 FROM maven:3.9-sapmachine-22 AS build
-WORKDIR /browser-task
-COPY pom.xml .
+WORKDIR $HOME
+COPY browser-task/pom.xml .
 RUN mvn dependency:go-offline
-COPY src/ /browser-task/src/
+COPY browser-task/src/ /browser-task/src/
 RUN mvn clean package -Dmaven.test.skip
 
 

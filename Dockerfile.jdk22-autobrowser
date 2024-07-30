@@ -5,8 +5,6 @@ COPY browser-task/pom.xml .
 RUN mvn dependency:go-offline
 COPY browser-task/src/ /browser-task/src/
 RUN mvn clean package -Dmaven.test.skip
-RUN ls -l /browser-task/target
-
 
 # This Dockerfile is used to build an headles vnc image based on Debian
 

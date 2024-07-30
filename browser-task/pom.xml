@@ -83,8 +83,13 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version> <!-- Hoặc phiên bản mới nhất hỗ trợ JDK 22 -->
+                <configuration>
+                    <source>22</source>
+                    <target>22</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

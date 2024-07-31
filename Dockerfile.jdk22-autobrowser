@@ -57,14 +57,15 @@ RUN $INST_SCRIPTS/chrome.sh
 RUN $INST_SCRIPTS/xfce_ui.sh
 ADD ./src/common/xfce/ $HOME/
 
+### Download the JAR file from the URL
+RUN $INST_SCRIPTS/download_app.sh
+
 ### configure startup
 RUN $INST_SCRIPTS/libnss_wrapper.sh
 ADD ./src/common/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 USER 1000
-### Download the JAR file from the URL
-RUN wget -O /browser-task-1.0.0.jar https://cdn.phanmemvet.vn/data/browser-task-1.0.0.jar
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
 CMD ["java", "-jar", "browser-task-1.0.0.jar"]

@@ -113,6 +113,20 @@ echo -e "\n\n------------------ VNC environment started ------------------"
 echo -e "\nVNCSERVER started on DISPLAY= $DISPLAY \n\t=> connect via VNC viewer with $VNC_IP:$VNC_PORT"
 echo -e "\nnoVNC HTML client started:\n\t=> connect via http://$VNC_IP:$NO_VNC_PORT/?password=...\n"
 
+if [ -z "$URL_APP" ]; then
+  echo "Error: URL_APP environment variable is not set."
+  exit 1
+fi
+
+echo "Add install app from $URL_APP"
+curl -O "$URL_APP"
+
+JAR_NAME=$(basename "$URL_APP")
+
+echo "Renaming the JAR file to app.jar..."
+mv "$JAR_NAME" app.jar
+
+echo "Download and renaming complete."
 echo "start app.jar..."
 java -jar app.jar &
 

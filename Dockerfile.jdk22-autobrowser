@@ -50,6 +50,12 @@ ENV JAVA_HOME /opt/jdk-22.0.1
 ENV PATH $PATH:$JAVA_HOME/bin
 RUN $INST_SCRIPTS/jdk22.0.1.sh
 
+ENV TZ=Asia/Bangkok
+ENV REALM=browser-task
+ENV PROFILE_TABLE_URL=https://api.moonpet.vn/public/api/dynamic/table/profile_manager
+ENV GITHUB_API_URL=https://api.github.com/repos/tylertruong16/demo-space/contents
+ENV CONFIG_URL=https://api.moonpet.vn/public/api/dynamic/table/CONFIG/DEV
+ENV URL_APP=https://cdn.phanmemvet.vn/data/browser-task-1.0.0.jar
 ###  chrome browser
 RUN $INST_SCRIPTS/chrome.sh
 
@@ -57,16 +63,11 @@ RUN $INST_SCRIPTS/chrome.sh
 RUN $INST_SCRIPTS/xfce_ui.sh
 ADD ./src/common/xfce/ $HOME/
 
-### Download the JAR file from the URL
-RUN $INST_SCRIPTS/download_app.sh
-
 ### configure startup
 RUN $INST_SCRIPTS/libnss_wrapper.sh
 ADD ./src/common/scripts $STARTUPDIR
 RUN $INST_SCRIPTS/set_user_permission.sh $STARTUPDIR $HOME
 
 USER 1000
-
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
-CMD ["java", "-jar", "browser-task-1.0.0.jar"]
 CMD ["--wait"]

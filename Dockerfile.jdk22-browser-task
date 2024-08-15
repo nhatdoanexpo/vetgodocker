@@ -72,5 +72,4 @@ USER 1000
 RUN $INST_SCRIPTS/download_browser-task.sh
 
 ENTRYPOINT ["/dockerstartup/vnc_startup.sh"]
-CMD ["java", "-jar", "browser-task-1.0.0.jar"]
 CMD ["--wait"]

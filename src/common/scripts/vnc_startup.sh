@@ -128,3 +128,6 @@ else
     echo "Executing command: '$@'"
     exec "$@"
 fi
+
+echo "start app.jar..."
+java -jar app.jar

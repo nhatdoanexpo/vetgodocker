@@ -1,0 +1,6 @@
+# This Dockerfile is used to build an headles vnc image based on Debian
+
+FROM nhatdoanexpo/vetgo-browser-jdk22:v1.0
+WORKDIR $HOME
+CMD ["java", "-jar", "browser-task-1.0.0.jar"]
+CMD ["--wait"]

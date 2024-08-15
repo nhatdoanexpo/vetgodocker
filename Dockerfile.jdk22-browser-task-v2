@@ -2,6 +2,5 @@
 
 FROM nhatdoanexpo/vetgo-browser-jdk22:v1.0
 WORKDIR $HOME
-CMD [".","/headless/install/download_browser-task.sh"]
 CMD ["java", "-jar", "browser-task-1.0.0.jar"]
 CMD ["--wait"]

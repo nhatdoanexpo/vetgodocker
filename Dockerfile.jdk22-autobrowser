@@ -56,6 +56,9 @@ ENV PROFILE_TABLE_URL=https://api.moonpet.vn/public/api/dynamic/table/profile_ma
 ENV GITHUB_API_URL=https://api.github.com/repos/tylertruong16/demo-space/contents
 ENV CONFIG_URL=https://api.moonpet.vn/public/api/dynamic/table/CONFIG/DEV
 ENV URL_APP=https://cdn.phanmemvet.vn/data/browser-task-1.0.0.jar
+ENV DATABASE_JSON_URL=https://api.moonpet.vn/public/api/dynamic/table
+ENV SOCKET_PUSH_URL=https://socketonly.moonpet.vn/api/notification/push
+ENV SOCKET_URL=https://socketonly.moonpet.vn/ws
 ###  chrome browser
 RUN $INST_SCRIPTS/chrome.sh
 

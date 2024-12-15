@@ -2,10 +2,20 @@
 ### every exit != 0 fails the script
 set -e
 
-echo "Install Chromium Browser"
-apt-get install -y chromium
-ln -sfn /usr/bin/chromium /usr/bin/chromium-browser
-apt-get clean -y
-rm -rf ~/.config/chromium
+echo "Installing Chromium Browser via APT..."
 
-echo "Chromium installation complete and configuration cleaned up."
+# Update package list
+apt-get update
+
+# Install Chromium via APT
+apt-get install -y chromium
+
+# Ensure chromium-browser symlink is correct
+if ! [ -L /usr/bin/chromium-browser ]; then
+    ln -s /usr/bin/chromium /usr/bin/chromium-browser
+    echo "Created symbolic link for chromium-browser."
+else
+    echo "Symbolic link for chromium-browser already exists."
+fi
+
+echo "Chromium installation complete via APT!"

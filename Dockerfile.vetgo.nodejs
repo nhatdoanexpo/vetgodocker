@@ -2,8 +2,8 @@
 
 FROM debian:11
 
-MAINTAINER Sven Nierlein "sven@consol.de"
-ENV REFRESHED_AT 2023-01-27
+LABEL maintainer="Nhat it"
+ENV REFRESHED_AT=2024-12-15
 
 LABEL io.k8s.description="Headless VNC Container with Xfce window manager, firefox and chromium" \
  io.k8s.display-name="Headless VNC Container based on Debian" \
@@ -48,12 +48,10 @@ RUN $INST_SCRIPTS/tigervnc.sh
 RUN $INST_SCRIPTS/no_vnc.sh
 
 ### Install Node.js
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get install -y nodejs && \
-    apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN $INST_SCRIPTS/nodejs.sh
 
 ###  chrome browser
-RUN $INST_SCRIPTS/chrome.sh
+RUN $INST_SCRIPTS/chrome1.sh
 
 ### Install xfce UI
 RUN $INST_SCRIPTS/xfce_ui.sh
